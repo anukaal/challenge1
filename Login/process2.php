@@ -1,13 +1,13 @@
 <?php
 
 
-$host = "localhost";
+$host = "127.0.0.1";
 $username = "root";
-$password = "";
-$db = "login";
+$password = "anurag1999";
+$database = "login";
 
-mysql_connect($host,$user,$password);
-mysql_select_db($db);
+$conn = mysqli_connect($host,$user,$password,$database);
+
 
 if(isset($_POST['username'])){
 
@@ -16,9 +16,9 @@ if(isset($_POST['username'])){
 
     $sql = "select * from login where username = '".$username."'AND password = '".$password."' limit 1";
 
-    $result = mysql_query($sql);
+    $result = mysqli_query($sql);
 
-    if(mysql_num_rows($result)==1){
+    if(mysqli_num_rows($result)==1){
         echo " You Have sucessfully Logged in";
         exit();
 
@@ -26,6 +26,7 @@ if(isset($_POST['username'])){
     else{
         
         echo " You have Entered Incorrect Password";
+        exit();
     }
 }
 
