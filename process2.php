@@ -28,3 +28,5 @@ if(isset($_POST['username'])){
         echo " You have Entered Incorrect Password";
     }
 }
+
+?>
