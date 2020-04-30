@@ -3,8 +3,8 @@
     $username = $_POST['user'];
     $password = $_POST['pass'];
 
-    $sql = "select * from login where username = '$username' and password = '$password'";
-    $result = mysqli_query($sql);
+    $sql = "select * from users";
+    $result = mysqli_query($con,$sql);
     $row = mysqli_fetch_array($result);
     
 
