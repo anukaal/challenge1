@@ -5,14 +5,13 @@
 
     $sql = "select * from login where username = '$username' and password = '$password'";
     $result = mysqli_query($con,$sql);
-    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
-    $count = mysqli_num_rows($result);
+    $row = mysqli_fetch_array($result);
+    
 
-    if($count == 1){
-        echo "<h1><center> Login Successful </center></h1>";
-    }
-    else{
-        echo "<h1> Login failed. Invalid username or password. </h1>";
-    }
+    if($row['user']==$username && $row['pass']==$password)
+        echo"You are a validated user.";
+    else
+        echo"Sorry, your credentials are not valid, Please try again.";
 
+        
 ?>
