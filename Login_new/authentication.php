@@ -4,7 +4,7 @@
     $password = $_POST['pass'];
 
     $sql = "select * from login where username = '$username' and password = '$password'";
-    $result = mysqli_query($con,$sql);
+    $result = mysqli_query($sql);
     $row = mysqli_fetch_array($result);
     
 
