@@ -18,5 +18,16 @@ def username_length(payload , validator):
         first_payload = payload_list
         print(first_payload)
 
-        
+        response_text = get_requestor(payload)
+        response_formatting_text = get_request(payload)
+        response_formatting_text = text_formatting(response_text)
+
+        if (validator == response_formatting_text[]):
+            response = True
+            username_length = i
+        else:
+            response = False
+            i = i + 1;
+
+    return username_length
     
