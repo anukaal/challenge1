@@ -20,3 +20,10 @@ $ connection.php - Connection file contains the connection code for database con
 
 
 $ authentication.php - This file validates the form data with the database which is submitted by the user.
+
+
+
+
+**Automation**
+
+Trying to automate **SQLI_LABS** using **PYTHON** script by *Boolean Based SQL Injection* .
